@@ -1,0 +1,27 @@
+Features:
+1) Criar nova conta com upload de foto
+2) Autenticação com Devise
+3) Após logado, o usuário pode criar uma lista (grupo de tarefas), que pode ser pública ou privada
+4) Ao criar uma lista, já podemos criar várias tarefas (usando nested attributes com javascript)
+5) Eu posso ver as listas públicas de outros usuários
+6) Eu posso dar watch nas listas públicas de outros usuários
+7) Eu posso ver todas as listas que eu dei watch
+
+Ferramentas obrigatórias
+
+1) Devise - Installed - OK
+2) Responders (http://github.com/plataformatec/responders) - OK
+3) Rspec - Installed - OK
+4) Capybara - OK
+5) Git - OK
+6) Carrierwave - OK
+7) SimpleForm - Installed - OK
+
+Dicas / Sugestões
+
+1) Não avaliaremos design (porém HTML deve ser correto)
+2) Testes unitários apenas de models e helpers
+3) Testar uma ou duas estórias com testes de integração
+4) Testes de integração: um bom modelo é o uso do capybara com o rspec
+5) Nested attributes com javascript: http://railsforum.com/viewtopic.php?id=28447 (observação, a partir do Rails 3, deve-se usar _destroy invés de _delete nas views)
+6) Organização de controllers: http://robots.thoughtbot.com/post/159806932/regulators-mount-up
