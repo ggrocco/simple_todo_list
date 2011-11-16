@@ -1,0 +1,20 @@
+<%= simple_form_for(@list) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :private %>
+  </div>
+
+	<%= f.simple_fields_for :tasks do |t| %>
+		
+		<%= t.input :todo %>
+		
+		<%= t.input :_destroy, :as=> :boolean %>
+		
+	<% end %>
+	
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

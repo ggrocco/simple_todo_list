@@ -1,6 +1,6 @@
 Features:
-1) Criar nova conta com upload de foto
-2) Autenticação com Devise
+1) Criar nova conta com upload de foto 
+2) Autenticação com Devise 
 3) Após logado, o usuário pode criar uma lista (grupo de tarefas), que pode ser pública ou privada
 4) Ao criar uma lista, já podemos criar várias tarefas (usando nested attributes com javascript)
 5) Eu posso ver as listas públicas de outros usuários
@@ -10,7 +10,7 @@ Features:
 Ferramentas obrigatórias
 
 1) Devise - Installed - OK
-2) Responders (http://github.com/plataformatec/responders) - OK
+2) Responders (http://github.com/plataformatec/responders) - Installed - OK
 3) Rspec - Installed - OK
 4) Capybara - OK
 5) Git - OK

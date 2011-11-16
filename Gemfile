@@ -38,8 +38,6 @@ gem 'jquery-rails'
 # To use debugger
 gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'nifty-generators', :group => :development
-
 group :test, :development do
   gem 'autotest'
   gem 'rspec-rails', '~> 2.6'
