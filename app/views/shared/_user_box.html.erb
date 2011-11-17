@@ -8,7 +8,7 @@
 <% else %>
     <%= simple_form_for(:user, :url => session_path(:user)) do |f| %>
 	<fieldset class="user-bar-row">
-		<%= f.input :email %>
+		<%= f.input :login %>
 		<%= f.input :password %>
 	    <%= f.button :submit %>
     </fieldset>

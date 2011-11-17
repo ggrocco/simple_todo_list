@@ -4,7 +4,7 @@ Todo:
 Features:
 1) Criar nova conta com upload de foto  - OK
 2) Autenticação com Devise - OK
-3) Após logado, o usuário pode criar uma lista (grupo de tarefas), que pode ser pública ou privada
+3) Após logado, o usuário pode criar uma lista (grupo de tarefas), que pode ser pública ou privada - OK
 4) Ao criar uma lista, já podemos criar várias tarefas (usando nested attributes com javascript)
 5) Eu posso ver as listas públicas de outros usuários
 6) Eu posso dar watch nas listas públicas de outros usuários

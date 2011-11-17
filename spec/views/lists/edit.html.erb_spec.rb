@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe "lists/edit.html.erb" do
   before(:each) do
-    @list = assign(:list, stub_model(List,
-      :name => "MyString",
-      :private => false
-    ))
+    @list = FactoryGirl.build(:list)
   end
 
   it "renders the edit list form" do
@@ -15,6 +12,7 @@ describe "lists/edit.html.erb" do
     assert_select "form", :action => lists_path(@list), :method => "post" do
       assert_select "input#list_name", :name => "list[name]"
       assert_select "input#list_private", :name => "list[private]"
+      assert_select "input#list_tasks_attributes_0_todo", :name => "list[tasks_attributes][0][todo]"
     end
   end
 end
