@@ -6,4 +6,8 @@ module LayoutHelper
   def title(page_title)
     content_for(:title) { h(page_title.to_s) }
   end
+  
+  # def avatar(current_user)
+  #   current_user.avatar? ? current_user.avatar : 
+  # end
 end

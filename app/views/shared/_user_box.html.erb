@@ -1,0 +1,21 @@
+<div class="userbox">
+<% if user_signed_in? %>
+	<div class="avatarname">
+		<%= link_to (image_tag current_user.avatar.url, :size => "40x40"), edit_user_registration_path %>
+		<span><%= current_user.username %></span>
+	    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete  %>
+	</div>
+<% else %>
+    <%= simple_form_for(:user, :url => session_path(:user)) do |f| %>
+	<fieldset class="user-bar-row">
+		<%= f.input :email %>
+		<%= f.input :password %>
+	    <%= f.button :submit %>
+    </fieldset>
+    <fieldset class="user-bar-row">
+	    <%= f.input :remember_me, :as=> :boolean %>
+      	<span><%= link_to "Forgot your password?", new_password_path(:user) %></span>
+    </fieldset>
+    <% end %>
+<% end %>
+</div>

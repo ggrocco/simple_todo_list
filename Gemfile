@@ -39,6 +39,7 @@ gem 'jquery-rails'
 gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test, :development do
+  gem 'factory_girl'
   gem 'autotest'
   gem 'rspec-rails', '~> 2.6'
   gem 'capybara'

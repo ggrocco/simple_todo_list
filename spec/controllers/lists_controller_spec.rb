@@ -45,13 +45,15 @@ describe ListsController do
 
   describe "GET new" do
     it "assigns a new list as @list" do
+      sign_in_user
       get :new
       assigns(:list).should be_a_new(List)
     end
   end
 
-  describe "GET edit" do
+  describe "GET edit" do    
     it "assigns the requested list as @list" do
+      sign_in_user
       list = List.create! valid_attributes
       get :edit, :id => list.id
       assigns(:list).should eq(list)
@@ -59,6 +61,10 @@ describe ListsController do
   end
 
   describe "POST create" do
+    before do
+      sign_in_user
+    end
+    
     describe "with valid params" do
       it "creates a new List" do
         expect {
@@ -88,7 +94,7 @@ describe ListsController do
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        List.any_instance.stub(:save).and_return(false)
+        List.stub(:save).and_return(false)
         post :create, :list => {}
         response.should render_template("new")
       end
@@ -96,6 +102,10 @@ describe ListsController do
   end
 
   describe "PUT update" do
+    before do
+      sign_in_user
+    end
+      
     describe "with valid params" do
       it "updates the requested list" do
         list = List.create! valid_attributes
@@ -132,14 +142,18 @@ describe ListsController do
       it "re-renders the 'edit' template" do
         list = List.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        List.any_instance.stub(:save).and_return(false)
-        put :update, :id => list.id, :list => {}
+        List.any_instance.stub(:update).and_return(false)
+        put :update, :id => list.id, :list => { :name => '' }
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
+    before do
+      sign_in_user
+    end
+      
     it "destroys the requested list" do
       list = List.create! valid_attributes
       expect {

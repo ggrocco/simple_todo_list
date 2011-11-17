@@ -8,6 +8,9 @@
     <%= yield(:head) %>
   </head>
   <body>
+	<header>
+		<%= render :partial => "shared/user_box" %>
+	</header>
     <div id="container">
       <%= yield %>
     </div>
