@@ -1,8 +1,19 @@
 TodoList::Application.routes.draw do
-  resources :lists
-
+ 
   devise_for :users
-
+  
+  namespace :users do
+    resources :lists, :controller => 'lists'
+  end
+    
+  resources :lists, :only => [:index, :show]
+  
+  unauthenticated do
+    as :user do
+      root :to => 'lists#index'
+    end
+  end
+    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -52,7 +63,7 @@ TodoList::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'lists#index'
+  root :to => 'users/lists#index'
 
   # See how all your routes lay out with "rake routes"
 

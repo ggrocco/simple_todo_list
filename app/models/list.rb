@@ -8,4 +8,5 @@ class List < ActiveRecord::Base
   validates_presence_of :name
   
   # scopes
+  scope :all_public, where( :private => false)
 end

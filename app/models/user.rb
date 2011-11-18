@@ -19,14 +19,11 @@ class User < ActiveRecord::Base
   validates_format_of :username, :with => /^\w{5,25}$/
   validates_uniqueness_of :username
   
-  # Scope
-   scope :find_by_username, ->(username) { first( conditions: { :username => username } ) }
+  protected
 
-   protected
-
-   def self.find_for_database_authentication(warden_conditions)
-     conditions = warden_conditions.dup
-     login = conditions.delete(:login)
-     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-   end
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    login = conditions.delete(:login)
+    where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+  end
 end

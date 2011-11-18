@@ -2,6 +2,7 @@ Factory.define :user do |u|
   u.email 'tester@test.com'
   u.username 'tester'
   u.password 'abcd1234'
+  u.lists { [ Factory.build(:list) ] }
 end
 
 Factory.define :list do |l|

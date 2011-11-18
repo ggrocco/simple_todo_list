@@ -51,4 +51,12 @@ describe User do
     @user.username = "tester"
     @user.should be_valid
   end
+  
+  it "User is unique by username and e-mail" do    
+    @first_user = Factory.create(:user)
+    
+    @user.should_not be_valid    
+    @user.should have(1).error_on(:username)
+    @user.should have(1).error_on(:email)
+  end
 end
