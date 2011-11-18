@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.2'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -19,9 +19,9 @@ gem 'carrierwave'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
+  gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.1.0'
 end
 
 gem 'jquery-rails'
@@ -41,6 +41,6 @@ gem 'ruby-debug19', :require => 'ruby-debug'
 group :test, :development do
   gem 'factory_girl'
   gem 'autotest'
-  gem 'rspec-rails', '~> 2.6'
+  gem 'rspec-rails', '~> 2.7'
   gem 'capybara'
 end
