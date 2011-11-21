@@ -2,7 +2,7 @@ require "application_responder"
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
-  respond_to :html
+  respond_to :html, :json
   
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   

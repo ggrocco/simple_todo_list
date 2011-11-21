@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe Users::ListsController do
+describe My::ListsController do
 
   # This should return the minimal set of attributes required to create a valid
   # List. As you add validations to List, be sure to
@@ -27,7 +27,7 @@ describe Users::ListsController do
     { :name => "My list" }
   end
   
-  let(:not_user_list){ Factory.create(:list) }
+  let(:not_user_list){ Factory.create(:other_user).lists.first }
   
   describe "GET index" do
     it "assigns all lists as @lists" do
@@ -82,7 +82,7 @@ describe Users::ListsController do
 
       it "redirects to the created list" do
         post :create, :list => valid_attributes
-        response.should redirect_to(users_list_url(List.last))
+        response.should redirect_to(my_list_url(List.last))
       end
     end
 
@@ -128,7 +128,7 @@ describe Users::ListsController do
       it "redirects to the list" do
         list = @user.lists.first
         put :update, :id => list.id, :list => valid_attributes
-        response.should redirect_to(users_list_path(list))
+        response.should redirect_to(my_list_path(list))
       end
     end
 
@@ -172,7 +172,7 @@ describe Users::ListsController do
     it "redirects to the lists list" do
       list = @user.lists.first
       delete :destroy, :id => list.id
-      response.should redirect_to(users_lists_url)
+      response.should redirect_to(my_lists_url)
     end
     
     it "only the owner can destroy" do

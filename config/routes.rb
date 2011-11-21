@@ -1,12 +1,20 @@
 TodoList::Application.routes.draw do
- 
-  devise_for :users
+  scope "/my" do
+    devise_for :users
+  end
   
-  namespace :users do
-    resources :lists, :controller => 'lists'
+  namespace :my do
+    resources :lists do
+      get :favorites, :on => :collection 
+    end
   end
     
-  resources :lists, :only => [:index, :show]
+  resources :lists, :only => [:index, :show] do
+    member do
+      post :follow
+      post :unfollow
+    end
+  end
   
   unauthenticated do
     as :user do

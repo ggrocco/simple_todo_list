@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "users/lists/show.html.erb" do
+describe "my/lists/show.html.erb" do
   before(:each) do
     assign(:list, stub_model(List,
       :name => "Name",

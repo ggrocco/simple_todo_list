@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe List do
    before(:each) do
-    @list = List.new( :name => "My list")
+    @list = List.new( :name => "My list", :owner => User.new )
   end
   
   it "It is valid with valid attributes" do
@@ -13,6 +13,12 @@ describe List do
     @list.name = nil
     @list.should_not be_valid
     @list.should have(1).error_on(:name)
+  end
+  
+  it "It is not valid without owner" do
+    @list.owner = nil
+    @list.should_not be_valid
+    @list.should have(1).error_on(:owner)
   end
   
   it "Is possible to add tasks" do

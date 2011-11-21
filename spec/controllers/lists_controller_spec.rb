@@ -20,27 +20,70 @@ require 'spec_helper'
 
 describe ListsController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # List. As you add validations to List, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    { :name => "My list", :private => false }
-  end
+  let(:not_user_list){ Factory.create(:other_user).lists.first }
 
   describe "GET index" do
     it "assigns all lists as @lists" do
-      list = List.create! valid_attributes
       get :index
-      assigns(:lists).should eq([list])
+      assigns(:lists).should eq([not_user_list])
     end
   end
 
   describe "GET show" do
     it "assigns the requested list as @list" do
-      list = List.create! valid_attributes
-      get :show, :id => list.id
-      assigns(:list).should eq(list)
+      get :show, :id => not_user_list.id
+      assigns(:list).should eq(not_user_list)
     end
   end
   
+  describe "POST follow" do
+    before(:each) do
+      @user = login_user
+    end
+    
+    describe "with valid params" do
+      it "new favorite" do
+        expect {
+          post :follow, :id => not_user_list.id
+        }.to change(@user.favorites, :count).by(1)
+      end
+      
+      it "redirects to the user favorites" do
+        post :follow, :id => not_user_list.id
+        response.should redirect_to(favorites_my_lists_url)
+      end
+    end
+
+    describe "with invalid params" do
+      it "render 404 page" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        List.any_instance.stub(:save).and_return(false)
+        post :follow, :id => -1
+        response.status.should eql 404
+      end
+    end    
+  end
+  
+  describe "POST unfollow" do
+    before(:each) do
+       @user = login_user
+       @user.favorites << not_user_list
+    end
+      
+    it "unfollow the requested list" do
+      expect {
+        post :unfollow, :id => not_user_list.id
+      }.to change(@user.favorites, :count).by(-1)
+    end
+
+    it "redirects to the user favorites" do
+      post :unfollow, :id => not_user_list.id
+      response.should redirect_to(favorites_my_lists_url)
+    end
+    
+    it "with invalid id" do
+      post :unfollow, :id => -1
+      response.status.should eql 404        
+    end
+  end
 end
