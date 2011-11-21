@@ -56,8 +56,6 @@ describe ListsController do
 
     describe "with invalid params" do
       it "render 404 page" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        List.any_instance.stub(:save).and_return(false)
         post :follow, :id => -1
         response.status.should eql 404
       end
