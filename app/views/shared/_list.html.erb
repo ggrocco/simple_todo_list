@@ -3,7 +3,7 @@
 		<%= image_tag list.private ? "private.png" : "public.png" %>
 	</div>
 	<div class="list_name">
-		<%= list.name %>
+		<%= link_to list.name, is_owner ? my_list_path(list) : list_path(list) %>
 	</div>			
 	<% if user_signed_in? %>
 	<div class="list_actions">		
@@ -21,5 +21,14 @@
 	<% end %>
 	<div class="list_expand">
 		<%= image_tag "down.png" %>
+	</div>
+	<div class="list_todos">
+		<% if !list.tasks.blank? %>
+		  <% for task in list.tasks %>
+		    <div id="list_todo"> - <%= task.todo %></div>
+		  <% end %>		
+		<% else %>
+		  Not found tasks.
+		<% end %>		
 	</div>
 </div>
