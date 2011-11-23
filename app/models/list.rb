@@ -14,4 +14,8 @@ class List < ActiveRecord::Base
   
   # scopes
   scope :all_public, where( :private => false )
+  
+  def has_favorite?(user)
+    users.include?(user)
+  end
 end

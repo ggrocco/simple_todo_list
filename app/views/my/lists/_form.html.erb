@@ -7,14 +7,14 @@
   </div>
 
 	<%= f.simple_fields_for :tasks do |t| %>
-		
-		<%= t.input :todo %>
-		
-		<%= t.input :_destroy, :as=> :boolean %>
-		
+		<%= render 'task_fields', :task => t %>		
 	<% end %>
 	
-  <div class="actions">
+	<div class="left">
+		<%= link_to_add_task (image_tag "add.png"), f, :tasks %>
+	</div>
+  
+	<div class="actions">
     <%= f.button :submit %>
   </div>
 <% end %>

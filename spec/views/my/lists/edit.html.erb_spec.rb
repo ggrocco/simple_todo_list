@@ -4,6 +4,8 @@ describe "my/lists/edit.html.erb" do
   before(:each) do
     @list = Factory.create(:other_user).lists.first
     assign(:list,  @list)
+    
+    view.stub(:user_signed_in?).and_return(false)
   end
 
   it "renders the edit list form" do

@@ -1,0 +1,177 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+/*
+* RESET
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+div, article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {	
+  display: block;
+}
+
+fieldset{
+	border:none;
+}
+
+a{
+	font-weight: inherit;
+  font-style: inherit;
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+li {
+}
+
+.left {float:left}
+.right {float:right;margin-right:0!important;}
+
+.clearfix:after { content: "."; display:block; height:0; clear:both; visibility:hidden; }
+
+/* Hides from IE-max \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+/** 
+* Custom
+*/
+
+body {
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+	background: #474747 image-url('nav-bg.png') top left repeat-x;
+  color: #fff;
+  line-height: 22px;
+  font-size: 13px;
+}
+
+h1, h2{
+	margin: 20px 0 15px 0;
+	font-size: 26px;
+	color:#ff9000;
+	text-transform: uppercase;
+}
+
+h3{	
+	font-size: 14px;
+	color:#ff9000;
+}
+
+a {color:#fff;}
+a:hover {color:#ff9000;}
+
+.o {color:#ff9000}
+
+/*--- Layout ---*/
+
+#container {
+	width:960px; 
+	margin:0 auto; 
+	background:image-url('radial-bg.png') top left no-repeat;
+}
+
+/*--- Nav ---*/
+
+nav {
+	list-style:none;
+	margin:0;
+	padding:16px 0 0 0;
+	font-size:20px;
+	letter-spacing:-1px;
+	position:relative;
+	z-index:50;
+}
+nav li {float:left;margin:0 72px 0 0;}
+nav li a {font-family: 'Jockey One', sans-serif; text-decoration:none;padding:3px 10px;border:none;}
+nav li#first a {padding-left:0}
+
+/*--- Header ---*/
+
+header {height:140px}
+#logo {font-size:40px;font-family: 'Jockey One', sans-serif; float:left;margin:30px 0 0 0}
+
+#userbox{
+	position: relative;
+	right: 0px;
+	top: -11px;
+	float:right;
+	#login_box{
+		div{
+			float:left;
+		}
+	}
+}
+.user_bar_row{
+	input{
+		font-size:12px;			
+		line-height:14px;
+		padding:4px;
+		color: #000;
+		background: #ccc;			
+		border: 1px solid #494A4A;
+	}
+	input[type="text"], input[type="password"]{
+		width: 145px;
+		margin-right: 5px;
+	}
+}
+.space_remember{
+	width: 160px;
+}
+.avatarname{
+	img {
+		border: 1px solid #ff9000;
+		padding: 1px;
+		margin-right: 10px;
+	}
+	a {text-decoration:none;}
+}
+
+/*--- Content ---*/
+
+#content{
+	height:300px
+}
+
+.box {
+	float:left;
+	width:100%;
+	margin:45px 30px 0 0;
+	padding:10px 0 0 0;
+	background:image-url('box-bg.png') top left repeat-x
+}
+
+
+
+/*--- Footer ---*/
+
+footer {
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	height:51px;
+	margin:20px 0 0 0;
+	background:image-url('footer-bg.png') bottom left repeat-x;
+}
+.credits {
+	width:960px;
+	margin:0 auto;
+	padding:14px 0 0 0;
+  font-size:13px;
+	a {text-decoration:none;}
+}

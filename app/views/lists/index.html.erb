@@ -1,17 +1,5 @@
-<h1>Listing lists</h1>
+<h1>Public lists</h1>
 <p id="notice"><%= notice %></p>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Private</th>
-  </tr>
-
-<% @lists.each do |list| %>
-  <tr>
-    <td><%= list.name %></td>
-    <td><%= list.private %></td>
-  </tr>
-<% end %>
-</table>
+<%= render 'shared/lists', :is_owner => false %>
 
 

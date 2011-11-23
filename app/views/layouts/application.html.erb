@@ -1,18 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+  <head>		
     <title><%= content_for?(:title) ? yield(:title) : "TODO list" %></title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
-	<header>
-		<%= render :partial => "shared/user_box" %>
-	</header>
-    <div id="container">
-      <%= yield %>
-    </div>
+		<div id="container">
+			<header>
+				<nav>
+					<ul>
+						<li id="first"><%= link_to "Home", root_path %></li>	
+						<% if user_signed_in? %>
+						<li><%= link_to "My Favorites Lists", favorites_my_lists_path %></li>
+						<li><%= link_to "Add List", new_my_list_path %></li>
+						<% end %>				
+						<li><%= link_to "Public Lists", lists_path %></li>
+					</ul>
+				</nav>
+				<%= render :partial => "shared/user_box" %>
+				<div class="clearfix"></div>
+				<div id="logo">TODO <span class="o">list</span></div>
+			</header>
+			<div id="content">
+			  <%= yield %>
+			</div>
+	  </div>	
+		<footer>
+			<div class="credits">
+				Developer by: <a target="_top" href="http://twitter.com/#!/ggrocco" >@ggrocco</a>			
+			</div>
+		</footer>
   </body>
 </html>

@@ -26,7 +26,7 @@ class My::ListsController < ApplicationController
   # GET /my/lists/new.xml
   def new
     @list = List.new
-    4.times { @list.tasks.build }
+    1.times { @list.tasks.build }
     respond_with(@list)
   end
 

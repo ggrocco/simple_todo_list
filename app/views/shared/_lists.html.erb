@@ -1,0 +1,9 @@
+<% if !@lists.blank? %>
+  <% @lists.each do |list| %>	
+		<%= render 'shared/list', :list => list, :is_owner => is_owner %>
+	<% end %>
+<% else %>
+  Not found any list.
+<% end %>
+
+

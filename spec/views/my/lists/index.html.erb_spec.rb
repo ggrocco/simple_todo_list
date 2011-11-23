@@ -12,13 +12,15 @@ describe "my/lists/index.html.erb" do
         :private => false
       )
     ])
+    
+    view.stub(:user_signed_in?).and_return(false)
   end
 
   it "renders a list of lists" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
+    assert_select "div.list_name", :text => "Name".to_s, :count => 2
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "tr>td", :text => false.to_s, :count => 2
+    assert_select "img[src=/assets/public.png]", :count => 2
   end
 end

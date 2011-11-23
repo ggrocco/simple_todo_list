@@ -1,24 +1,2 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @list.name %>
-</p>
-
-<p>
-  <b>Private:</b>
-  <%= @list.private %>
-</p>
-
-<ol>
-<% if !@list.tasks.blank? %>
-  <% for task in @list.tasks %>
-    <li><%= task.todo %> </li>
-  <% end %>
-<% else %>
-  <%= "Not found any task." %>
-<% end %>
-</ol>
-
-<%= link_to 'Edit', edit_my_list_path(@list) %> |
-<%= link_to 'Back', my_lists_path %>
+<%= render 'shared/list', :is_owner => true, :list => @list %>

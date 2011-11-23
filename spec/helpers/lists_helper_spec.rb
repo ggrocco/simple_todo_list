@@ -1,15 +1,23 @@
 require 'spec_helper'
-
-# Specs in this file have access to a helper object that includes
-# the ListsHelper. For example:
-#
-# describe ListsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe ListsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "link_to_remove_task" do
+    before(:each) do
+      @template = ActionView::Base.new
+      @template.output_buffer = ""
+      @builder = SimpleForm::FormBuilder.new(:tasks, Task.new, @template, {}, proc {})
+    end
+    
+    it "add the link_to_remove_task" do
+      @builder.simple_fields_for :tasks do |t|
+        helper.link_to_remove_task("remove", t).should == "<input class=\"hidden\" id=\"tasks_tasks__destroy\" name=\"tasks[tasks][_destroy]\" type=\"hidden\" /><a href=\"#\" onclick=\"remove_task(this); return false;\">remove</a>"
+      end
+    end
+    
+    it "and can't accept empty result" do
+      @builder.simple_fields_for :tasks do |t|
+        helper.link_to_remove_task("remove", t).should_not == ""
+      end
+    end
+  end
+  
 end
