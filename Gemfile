@@ -43,4 +43,5 @@ group :test, :development do
   gem 'autotest'
   gem 'rspec-rails', '~> 2.7'
   gem 'capybara'
+  gem 'launchy'
 end
