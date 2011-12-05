@@ -1,26 +1,28 @@
-<div class="list_box">
-	<div class="list_visible">
-		<%= image_tag list.private ? "private.png" : "public.png" %>
-	</div>
-	<div class="list_name">
-		<%= link_to list.name, is_owner ? my_list_path(list) : list_path(list) %>
-	</div>			
-	<% if user_signed_in? %>
-	<div class="list_actions">		
-		<% if is_owner %>
-			<%= link_to (image_tag "edit.png"), edit_my_list_path(list) %>
-			<%= link_to (image_tag "delete.png"), my_list_path(list), confirm: 'Are you sure?', method: :delete %>
-		<% else %>
-		  <% if list.has_favorite?(current_user) %>	
-				<%= link_to (image_tag "unfollow.png"), unfollow_list_path(list), :method => :post, :title=> 'Unfollow list' %>			
+<div class="list_item">
+	<div class="list_box">		
+		<div class="list_visible left">
+			<%= image_tag list.private ? "private.png" : "public.png" %>
+		</div>
+		<div class="list_name left">
+			<%= link_to list.name, is_owner ? my_list_path(list) : list_path(list) %>
+		</div>			
+		<% if user_signed_in? %>
+		<div class="list_actions left">		
+			<% if is_owner %>
+				<%= link_to (image_tag "edit.png"), edit_my_list_path(list) %>
+				<%= link_to (image_tag "delete.png"), my_list_path(list), confirm: 'Are you sure?', method: :delete %>
 			<% else %>
-				<%= link_to (image_tag "follow.png"), follow_list_path(list), :method => :post, :title=> 'Follow list' %>
+			  <% if list.has_favorite?(current_user) %>	
+					<%= link_to (image_tag "unfollow.png"), unfollow_list_path(list), :method => :post, :title=> 'Unfollow list' %>			
+				<% else %>
+					<%= link_to (image_tag "follow.png"), follow_list_path(list), :method => :post, :title=> 'Follow list' %>
+				<% end %>
 			<% end %>
+		</div>
 		<% end %>
-	</div>
-	<% end %>
-	<div class="list_expand">
-		<%= image_tag "down.png" %>
+		<div class="list_expand right">
+			<%= image_tag "down.png" %>
+		</div>
 	</div>
 	<div class="list_todos">
 		<% if !list.tasks.blank? %>
