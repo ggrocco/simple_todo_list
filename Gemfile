@@ -42,6 +42,7 @@ group :test, :development do
   gem 'factory_girl'
   gem 'autotest'
   gem 'rspec-rails', '~> 2.7'
+  gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
 end

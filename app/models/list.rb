@@ -3,6 +3,7 @@ class List < ActiveRecord::Base
   # relations
   has_and_belongs_to_many :users, :uniq => true
   has_many :tasks, :dependent => :destroy
+  has_many :list_feeds, :dependent => :destroy
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   
   # nesteds.

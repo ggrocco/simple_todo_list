@@ -4,7 +4,8 @@ class My::ListsController < ApplicationController
   # GET /my/lists
   # GET /my/lists.xml
   def index
-    @lists = current_user.lists
+    @lists = current_user.lists.includes(:tasks)
+    @list_feeds = current_user.list_feeds.eager_build
     respond_with(@lists)
   end
 

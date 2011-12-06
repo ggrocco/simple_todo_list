@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206162001) do
+ActiveRecord::Schema.define(:version => 20111206165611) do
+
+  create_table "list_feeds", :force => true do |t|
+    t.string   "instance_type"
+    t.text     "instance_data"
+    t.integer  "list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "lists", :force => true do |t|
     t.string   "name"

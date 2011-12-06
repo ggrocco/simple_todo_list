@@ -33,7 +33,7 @@ describe My::ListsController do
     it "assigns all lists as @lists" do
       user = login_user
       get :index
-      assigns(:lists).should eq(user.lists)
+      assigns(:lists).to_set.should eq(user.lists.to_set)
     end
   end
 

@@ -13,6 +13,8 @@ describe "my/lists/index.html.erb" do
       )
     ])
     
+     assign(:list_feeds, [])
+    
     view.stub(:user_signed_in?).and_return(false)
   end
 

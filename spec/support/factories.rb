@@ -18,9 +18,9 @@ Factory.define :list_private, :class => List do |l|
   l.tasks { [ Factory.build(:task) ] }
 end
 
-Factory.define :other_user, :class => User do |u|
-  u.email 'other_user@test.com'
-  u.username 'other_user'
+Factory.define :other_user, :class => User do |u|  
+  u.sequence(:email) { |n| "other_user#{n}@test.com" }
+  u.sequence(:username) { |n| "other_user#{n}" }
   u.password 'abcd1234'
   u.lists { [Factory.build(:other_list) ] }
   u.after_build { |u| u.lists.each{ |l| l.owner = u } }

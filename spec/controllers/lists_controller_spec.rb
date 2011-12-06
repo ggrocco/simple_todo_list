@@ -19,13 +19,14 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ListsController do
-
-  let(:not_user_list){ Factory.create(:other_user).lists.first }
+  
+  let(:not_user_list){ Factory(:other_user).lists.first }
+  let(:not_user_lists){ List.all_public }
 
   describe "GET index" do
     it "assigns all lists as @lists" do
       get :index
-      assigns(:lists).should eq([not_user_list])
+      assigns(:lists).to_set.should eq(not_user_lists.to_set)
     end
   end
 

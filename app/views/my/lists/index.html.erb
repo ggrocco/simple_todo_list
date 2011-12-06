@@ -1,3 +1,5 @@
 <h1>My lists</h1>
 <p id="notice"><%= notice %></p>
 <%= render 'shared/lists', :is_owner => true %>
+
+<%= render(@list_feeds) || "No feeds found." %>

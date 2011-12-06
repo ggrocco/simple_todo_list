@@ -22,7 +22,7 @@ describe "Lists" do
     it "add list to favorite list" do
       visit lists_path
       click_link "Follow list"
-      page.should have_content('My public list')
+      page.should have_content('My favorites')
     end
   end
   

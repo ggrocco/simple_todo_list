@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   # relations
   has_and_belongs_to_many :favorites, :class_name => "List", :uniq => true
   has_many :lists, :dependent => :destroy, :foreign_key => "owner_id"
+  has_many :list_feeds, :through => :favorites
   
   # validations
   validates_presence_of :username
