@@ -1,3 +1,8 @@
+<% unless user_signed_in? %>
+<div id="new_user_link">
+	<%= link_to "Become a user, register here!", new_user_registration_path %>
+</div>
+<% end %>
 <h1>Public lists</h1>
 <p id="notice"><%= notice %></p>
 <%= render 'shared/lists', :is_owner => false %>
