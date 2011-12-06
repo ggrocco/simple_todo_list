@@ -3,6 +3,7 @@ Factory.define :user do |u|
   u.username 'tester'
   u.password 'abcd1234'
   u.lists { [Factory.build(:list), Factory.build(:list_private) ] }
+  u.favorites { [Factory(:other_user).lists.first] }
   u.after_build { |u| u.lists.each{ |l| l.owner = u } }
 end
 
@@ -30,6 +31,7 @@ Factory.define :other_list, :class => List do |l|
   l.name 'Other public list'
   l.private false
   l.tasks { [ Factory.build(:task) ] }
+  l.after_create { |r| r.list_feeds.create( :builder => FeedBuilders::TaskDone.new( :task_id=> l.id )  )}
 end
 
 Factory.define :task do |t|

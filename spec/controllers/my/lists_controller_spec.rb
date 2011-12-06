@@ -34,6 +34,7 @@ describe My::ListsController do
       user = login_user
       get :index
       assigns(:lists).to_set.should eq(user.lists.to_set)
+      assigns(:list_feeds).should eq(user.list_feeds.eager_build)
     end
   end
 
