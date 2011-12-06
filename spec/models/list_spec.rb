@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe List do
-   before(:each) do
+  before(:each) do
     @list = List.new( :name => "My list", :owner => User.new )
   end
   

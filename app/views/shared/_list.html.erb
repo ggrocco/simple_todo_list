@@ -27,7 +27,10 @@
 	<div class="list_todos">
 		<% if !list.tasks.blank? %>
 		  <% for task in list.tasks %>
-		    <div id="list_todo"> - <%= task.todo %></div>
+		    <div id="list_todo">
+					<span class="todo"> - <%= task.todo %></span>
+					<span class="status"> - <%= task.done ? "Done" : "Not yet..." %></span>
+				</div>
 		  <% end %>		
 		<% else %>
 		  Not found tasks.
