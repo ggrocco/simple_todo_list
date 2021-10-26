@@ -1,20 +1,19 @@
-require 'spec_helper'
+# frozen_string_literal: true
 
-describe "my/lists/new.html.erb" do
-  before(:each) do
-    assign(:list, stub_model(List,
-      :name => "MyString",
-      :private => false
-    ).as_new_record)
+require 'rails_helper'
+
+describe 'my/lists/new.html.erb' do
+  before do
+    assign(:list, build(:list, name: 'Name', id: 1, private: false))
   end
 
-  it "renders new list form" do
+  it 'renders new list form' do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form", :action => my_lists_path, :method => "post" do
-      assert_select "input#list_name", :name => "list[name]"
-      assert_select "input#list_private", :name => "list[private]"
+    assert_select 'form', action: my_lists_path, method: 'post' do
+      assert_select 'input#list_name', name: 'list[name]'
+      assert_select 'input#list_private', name: 'list[private]'
     end
   end
 end

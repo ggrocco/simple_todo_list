@@ -1,30 +1,19 @@
-require 'spec_helper'
+# frozen_string_literal: true
 
-describe List do
-  before(:each) do
-    @list = List.new( :name => "My list", :owner => User.new )
+require 'rails_helper'
+
+RSpec.describe List, type: :model do
+  subject(:list) { build(:list, name: 'My list', owner: User.new) }
+
+  describe 'validations' do
+    it { is_expected.to be_valid }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:owner) }
   end
-  
-  it "It is valid with valid attributes" do
-    @list.should be_valid
+
+  it 'Is possible to add tasks' do
+    4.times { |i| list.tasks << Task.new(todo: "Todo #{i}") }
+
+    expect(list.tasks.size).to be 4
   end
-  
-  it "It is not valid without name" do
-    @list.name = nil
-    @list.should_not be_valid
-    @list.should have(1).error_on(:name)
-  end
-  
-  it "It is not valid without owner" do
-    @list.owner = nil
-    @list.should_not be_valid
-    @list.should have(1).error_on(:owner)
-  end
-  
-  it "Is possible to add tasks" do
-    4.times{ |i| @list.tasks << Task.new(:todo => "Todo #{i}") }   
-    @list.tasks.size.should == 4
-    @list.should be_valid
-  end
-  
 end

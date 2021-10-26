@@ -1,22 +1,23 @@
-class List < ActiveRecord::Base
+# frozen_string_literal: true
 
+class List < ApplicationRecord
   # relations
-  has_and_belongs_to_many :users, :uniq => true
-  has_many :tasks, :dependent => :destroy
-  has_many :list_feeds, :dependent => :destroy
-  belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
-  
+  has_and_belongs_to_many :users, uniq: true
+  has_many :tasks, dependent: :destroy
+  has_many :list_feeds, dependent: :destroy
+  belongs_to :owner, class_name: 'User'
+
   # nesteds.
-  accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:todo].blank? }, :allow_destroy => true
-  
+  accepts_nested_attributes_for :tasks, reject_if: ->(a) { a[:todo].blank? }, allow_destroy: true
+
   # validations.
-  validates_presence_of :name
-  validates_presence_of :owner
-  
+  validates :name, presence: true
+  validates :owner, presence: true
+
   # scopes
-  scope :all_public, where( :private => false )
-  
-  def has_favorite?(user)
+  scope :all_public, -> { where(private: false) }
+
+  def favorite?(user)
     users.include?(user)
   end
 end

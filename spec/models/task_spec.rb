@@ -1,29 +1,26 @@
-require 'spec_helper'
+# frozen_string_literal: true
 
-describe Task do
-  describe "#create" do
-    before(:each) do
-      @task = Task.new( :todo => "Do something..." )
-    end
-    
-    it "It new are not done." do
-      @task.done.should be_false
+require 'rails_helper'
+
+RSpec.describe Task, type: :model do
+  subject(:task) { described_class.new(todo: 'Do something...') }
+
+  describe '#create' do
+    it 'new are not done.' do
+      expect(task.done).to be false
     end
   end
-  
-  describe "#Update" do
-    before(:each) do
-      user = Factory(:other_user)
-      @list = user.lists.first
-      @task = @list.tasks.first
+
+  describe '#Update' do
+    let(:user) { build(:user, :with_list_with_task) }
+    let(:list) { user.lists.first }
+    let(:task) { list.tasks.first }
+
+    it 'Has create notify after change to done' do
+      expect do
+        task.done = true
+        task.save!
+      end.to change(list.list_feeds, :count).by(1)
     end
-    
-    it "Has create notify after change to done" do
-       expect {
-          @task.done = true
-          @task.save!
-        }.to change(@list.list_feeds, :count).by(1)
-    end
-    
   end
 end

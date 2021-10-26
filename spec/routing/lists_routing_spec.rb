@@ -1,23 +1,21 @@
-require "spec_helper"
+# frozen_string_literal: true
 
-describe ListsController do
-  describe "routing" do
-     
-    it "routes to #index" do
-      get("/lists").should route_to("lists#index")
-    end
+require 'rails_helper'
 
-    it "routes to #show" do
-      get("/lists/1").should route_to("lists#show", :id => "1")
-    end
-    
-    it "routes to #follow" do
-      post("/lists/1/follow").should route_to("lists#follow", :id => "1")
-    end
-    
-    it "routes to #unfollow" do
-      post("/lists/1/unfollow").should route_to("lists#unfollow", :id => "1")
-    end
-    
+RSpec.describe 'routing for ListsController', type: :routing do
+  it 'routes to #index' do
+    expect(get: '/lists').to route_to('lists#index')
+  end
+
+  it 'routes to #show' do
+    expect(get: '/lists/1').to route_to('lists#show', id: '1')
+  end
+
+  it 'routes to #follow' do
+    expect(post: '/lists/1/follow').to route_to('lists#follow', id: '1')
+  end
+
+  it 'routes to #unfollow' do
+    expect(post: '/lists/1/unfollow').to route_to('lists#unfollow', id: '1')
   end
 end

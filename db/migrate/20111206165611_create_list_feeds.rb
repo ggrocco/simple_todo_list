@@ -1,4 +1,6 @@
-class CreateListFeeds < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class CreateListFeeds < ActiveRecord::Migration[6.1]
   def change
     create_table :list_feeds do |t|
       t.string :instance_type

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class ListsController < ApplicationController
-  
-   before_filter :authenticate_user!, :except => [:index, :show]
-   
+  before_action :authenticate_user!, except: %i[index show]
+
   # GET /lists
   # GET /lists.xml
   def index
@@ -15,14 +16,14 @@ class ListsController < ApplicationController
     @list = List.all_public.find(params[:id])
     respond_with(@list)
   end
-  
+
   # POST /lists/1/follow
   # POST /lists/1/follow.xml
   def follow
     @list = List.all_public.find(params[:id])
     current_user.favorites << @list
     current_user.save
-    respond_with(@list, :location => favorites_my_lists_url)    
+    respond_with(@list, location: favorites_my_lists_url)
   end
 
   # POST /lists/1/unfollow
@@ -30,6 +31,6 @@ class ListsController < ApplicationController
   def unfollow
     @list = current_user.favorites.find(params[:id])
     current_user.favorites.delete(@list)
-    respond_with(@list, :location => favorites_my_lists_url)
+    respond_with(@list, location: favorites_my_lists_url)
   end
 end

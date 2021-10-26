@@ -1,62 +1,18 @@
-require 'spec_helper'
+# frozen_string_literal: true
 
-describe User do
-  before(:each) do
-    @user = Factory.build(:user)
-  end
-    
-  it "User with email and password is valid" do
-    @user.should be_valid
-  end
-  
-  it "User without email is not valid" do
-    @user.email = nil
-    @user.should_not be_valid
-    @user.should have(1).error_on(:email)
-    
-    @user.email = "invalid e-mail"
-    @user.should_not be_valid
-    @user.should have(1).error_on(:email)
-        
-    @user.email = "test@test.com"
-    @user.should be_valid
-  end
-  
-  it "User without password is not valid" do
-    @user.password = nil
-    @user.should_not be_valid
-    @user.should have(1).error_on(:password)
-    
-    @user.password = ""
-    @user.should_not be_valid
-    @user.should have(1).error_on(:password)
-        
-    @user.password = "1234change"
-    @user.should be_valid
-  end
-  
-  it "User without username is not valid" do
-    @user.username = nil
-    @user.should_not be_valid
-    @user.should have(2).error_on(:username)
-    
-    @user.username = "x"*4
-    @user.should_not be_valid
-    @user.should have(1).error_on(:username)
-      
-    @user.username = "x"*26
-    @user.should_not be_valid
-    @user.should have(1).error_on(:username)
-    
-    @user.username = "tester"
-    @user.should be_valid
-  end
-  
-  it "User is unique by username and e-mail" do    
-    @first_user = Factory.create(:user)
-    
-    @user.should_not be_valid    
-    @user.should have(1).error_on(:username)
-    @user.should have(1).error_on(:email)
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  subject(:user) { build(:user) }
+
+  describe 'validations' do
+    it { is_expected.to be_valid }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_uniqueness_of(:email) }
+
+    it { is_expected.to validate_presence_of(:password) }
+
+    it { is_expected.to validate_presence_of(:username) }
+    it { is_expected.to validate_uniqueness_of(:username) }
   end
 end

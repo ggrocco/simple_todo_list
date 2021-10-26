@@ -1,8 +1,8 @@
 <div id="userbox">
-<% if user_signed_in? %>
+<% if user_signed_in?  %>
 	<div class="avatarname">
 		<div class="left">
-		<%= image_tag current_user.avatar.url, :size => "40x40" %>
+      <%= image_avatar current_user %>
 		</div>
 		<div class="left">
 			<span><%= link_to current_user.username, edit_user_registration_path %></span><br />

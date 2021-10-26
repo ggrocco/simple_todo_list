@@ -1,48 +1,42 @@
-source 'http://rubygems.org'
+# frozen_string_literal: true
 
-gem 'rails', '3.1.2'
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+ruby '3.0.2'
 
-gem 'sqlite3'
+gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 
-# Authentication.
-gem 'devise'
-# Form helper.
-gem 'simple_form'
-# Responders to dry
-gem 'responders'
-# Upload files helper.
-gem 'carrierwave'
+gem 'bootsnap', '>= 1.4.4', require: false # Reduces boot times through caching; required in config/boot.rb
+gem 'devise' # Authentication.
+gem 'puma', '~> 5.0' # App server
+gem 'responders' # Responders to dry
+gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
+gem 'simple_form' # Form helper.
+gem 'sqlite3', '~> 1.4' # Sqlite3 as the database for Active Record
+gem 'turbolinks', '~> 5' # Makes navigating your web application faster
+gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.1.0'
+group :test do
+  gem 'database_cleaner-active_record'
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-gem 'ruby-debug19', :require => 'ruby-debug'
-
-group :test, :development do
-  gem 'factory_girl'
-  gem 'autotest'
-  gem 'rspec-rails', '~> 2.7'
-  gem 'database_cleaner'
+group :development, :test do
   gem 'capybara'
-  gem 'launchy'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry-byebug'
+  gem 'rspec-rails'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+end
+
+group :development do
+  gem 'listen', '~> 3.3'
+  gem 'rack-mini-profiler', '~> 2.0'
+  gem 'spring'
+  gem 'web-console', '>= 4.1.0'
 end

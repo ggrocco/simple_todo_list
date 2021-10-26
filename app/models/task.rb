@@ -1,14 +1,15 @@
-class Task < ActiveRecord::Base
-  
+# frozen_string_literal: true
+
+class Task < ApplicationRecord
   after_update :notify_task_done
-  
-  default_scope order(:done)
+
+  default_scope { order(:done) }
   belongs_to :list
-  
+
   def notify_task_done
-    if self.done_changed? && self.done
-      builder = FeedBuilders::TaskDone.new( :task_id => self.id )
-      ListFeed.create!( :list_id => self.list_id, :builder => builder )
-    end
-  end  
+    return unless done_changed? && done
+
+    builder = FeedBuilders::TaskDone.new(task_id: id)
+    ListFeed.create!(list_id: list_id, builder: builder)
+  end
 end
